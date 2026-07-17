@@ -103,61 +103,78 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el => el.classList.add('is-visible'));
   }
 
-  /* ---- lotus blooming: scrolling UP opens every lotus, scrolling DOWN closes them ---- */
-  const bloomEls = document.querySelectorAll('.scroll-bloom');
-  if (bloomEls.length) {
-    let lastY = window.scrollY;
-    let ticking = false;
-
-    const setBloomState = (state) => {
-      bloomEls.forEach(el => {
-        el.classList.toggle('is-blooming', state === 'blooming');
-        el.classList.toggle('is-closed', state === 'closed');
-      });
-    };
-
-    // start closed, like a bud waiting to open
-    setBloomState('closed');
-
-    // one-time welcome bloom on the hero flower once the page has settled
-    const heroFlower = document.querySelector('.hero-flower-badge .flower');
-    const playEntranceBloom = () => {
-      if (reduceMotion || !heroFlower) return;
+  /* ---- one-time gentle fade-in for the hero singing bowl emblem ---- */
+  const emberScene = document.querySelector('.hero-monk-emblem');
+  if (emberScene && !reduceMotion) {
+    const playEntrance = () => {
       requestAnimationFrame(() => {
-        heroFlower.classList.add('is-entering');
-        setTimeout(() => heroFlower.classList.remove('is-entering'), 1300);
+        emberScene.classList.add('is-entering');
+        setTimeout(() => emberScene.classList.remove('is-entering'), 1200);
       });
     };
     if (document.body.classList.contains('is-loaded')) {
-      setTimeout(playEntranceBloom, 250);
+      setTimeout(playEntrance, 250);
     } else {
-      window.addEventListener('load', () => setTimeout(playEntranceBloom, 550));
+      window.addEventListener('load', () => setTimeout(playEntrance, 550));
     }
+  }
 
-    const updateBloom = () => {
-      const y = window.scrollY;
+  /* ---- singing bowl: tap to hear a synthesized bowl tone ---- */
+  const bowl = document.getElementById('singingBowl');
+  if (bowl) {
+    const bowlScene = bowl.querySelector('.bowl-scene');
+    let audioCtx = null;
 
-      if (y < 24) {
-        // back at the very top: rest fully closed
-        setBloomState('closed');
-      } else if (y < lastY - 2) {
-        // scrolling up: bloom open
-        setBloomState('blooming');
-      } else if (y > lastY + 2) {
-        // scrolling down: close back into a bud
-        setBloomState('closed');
+    const ringBowl = () => {
+      // audio: build a real singing-bowl tone from its natural overtone series,
+      // since we can't embed a licensed audio file
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const fundamental = 233; // roughly a small brass bowl's fundamental
+        const partials = [1, 1.52, 2.76, 3.94, 5.42]; // inharmonic ratios typical of singing bowls
+        const master = audioCtx.createGain();
+        master.gain.setValueAtTime(0.0001, now);
+        master.gain.exponentialRampToValueAtTime(0.32, now + 0.04);
+        master.gain.exponentialRampToValueAtTime(0.0001, now + 5.5);
+        master.connect(audioCtx.destination);
+
+        partials.forEach((ratio, i) => {
+          // two very slightly detuned oscillators per partial for a natural shimmering beat
+          [-0.6, 0.6].forEach(detune => {
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.value = fundamental * ratio;
+            osc.detune.value = detune;
+            const partialGain = audioCtx.createGain();
+            partialGain.gain.value = 0.5 / (i + 1.3);
+            osc.connect(partialGain).connect(master);
+            osc.start(now);
+            osc.stop(now + 5.6);
+          });
+        });
+      } catch (err) {
+        console.error('Singing bowl audio failed:', err);
       }
 
-      lastY = y;
-      ticking = false;
+      // visual: one-off emphasized strike layered on top of the ambient loop
+      if (bowlScene && !reduceMotion) {
+        bowlScene.classList.remove('is-struck');
+        void bowlScene.offsetWidth; // restart animation
+        bowlScene.classList.add('is-struck');
+        setTimeout(() => bowlScene.classList.remove('is-struck'), 2500);
+      }
     };
 
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateBloom);
-        ticking = true;
+    bowl.addEventListener('click', ringBowl);
+    bowl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        ringBowl();
       }
-    }, { passive: true });
+    });
   }
 
   /* ---- footer year ---- */
