@@ -54,43 +54,27 @@
       <div class="hero-split-visual">
         <div class="hero-split-photo" style="background-image:url('images/praying-hands.jpeg')"></div>
         <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
-        <div class="hero-flower-badge">
-          <div class="flower scroll-bloom" aria-hidden="true">
-            <span class="flower-glow"></span>
-            <svg class="flower-svg" viewBox="0 0 168 168">
-              <!-- outer ring -->
-              <g class="petal petal-outer petal-gold" style="--i:0; transform:rotate(0deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <g class="petal petal-outer petal-sage" style="--i:1; transform:rotate(45deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <g class="petal petal-outer petal-gold" style="--i:2; transform:rotate(90deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <g class="petal petal-outer petal-sage" style="--i:3; transform:rotate(135deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <g class="petal petal-outer petal-gold" style="--i:4; transform:rotate(180deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <g class="petal petal-outer petal-sage" style="--i:5; transform:rotate(225deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <g class="petal petal-outer petal-gold" style="--i:6; transform:rotate(270deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <g class="petal petal-outer petal-sage" style="--i:7; transform:rotate(315deg)"><path class="petal-shape" d="M84 84 C 74 62 74 28 84 8 C 94 28 94 62 84 84 Z"/></g>
-              <!-- middle ring, offset for a layered look -->
-              <g class="petal petal-middle petal-sand" style="--i:2; transform:rotate(22.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <g class="petal petal-middle petal-deep" style="--i:3; transform:rotate(67.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <g class="petal petal-middle petal-sand" style="--i:4; transform:rotate(112.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <g class="petal petal-middle petal-deep" style="--i:5; transform:rotate(157.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <g class="petal petal-middle petal-sand" style="--i:6; transform:rotate(202.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <g class="petal petal-middle petal-deep" style="--i:7; transform:rotate(247.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <g class="petal petal-middle petal-sand" style="--i:8; transform:rotate(292.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <g class="petal petal-middle petal-deep" style="--i:9; transform:rotate(337.5deg)"><path class="petal-shape" d="M84 84 C 77 67 77 42 84 26 C 91 42 91 67 84 84 Z"/></g>
-              <!-- inner ring, small petals cradling the core -->
-              <g class="petal petal-inner petal-deep" style="--i:6; transform:rotate(0deg)"><path class="petal-shape" d="M84 84 C 79 71 79 54 84 42 C 89 54 89 71 84 84 Z"/></g>
-              <g class="petal petal-inner petal-gold" style="--i:7; transform:rotate(60deg)"><path class="petal-shape" d="M84 84 C 79 71 79 54 84 42 C 89 54 89 71 84 84 Z"/></g>
-              <g class="petal petal-inner petal-deep" style="--i:8; transform:rotate(120deg)"><path class="petal-shape" d="M84 84 C 79 71 79 54 84 42 C 89 54 89 71 84 84 Z"/></g>
-              <g class="petal petal-inner petal-gold" style="--i:9; transform:rotate(180deg)"><path class="petal-shape" d="M84 84 C 79 71 79 54 84 42 C 89 54 89 71 84 84 Z"/></g>
-              <g class="petal petal-inner petal-deep" style="--i:10; transform:rotate(240deg)"><path class="petal-shape" d="M84 84 C 79 71 79 54 84 42 C 89 54 89 71 84 84 Z"/></g>
-              <g class="petal petal-inner petal-gold" style="--i:11; transform:rotate(300deg)"><path class="petal-shape" d="M84 84 C 79 71 79 54 84 42 C 89 54 89 71 84 84 Z"/></g>
-              <!-- glowing sacred core -->
-              <g class="sacred-core">
-                <circle class="core-ring core-ring-outer" cx="84" cy="84" r="22"/>
-                <circle class="core-ring core-ring-mid" cx="84" cy="84" r="15"/>
-                <circle class="flower-pistil" cx="84" cy="84" r="9"/>
-              </g>
+        <div class="hero-monk-emblem" id="singingBowl" role="button" tabindex="0" aria-label="Tap to ring the singing bowl">
+          <div class="bowl-scene" aria-hidden="true">
+            <div class="bowl-ring ring-1"></div>
+            <div class="bowl-ring ring-2"></div>
+            <div class="bowl-ring ring-3"></div>
+            <svg class="singing-bowl" viewBox="0 0 120 80">
+              <defs>
+                <linearGradient id="bowlBodyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#D98A4E"/>
+                  <stop offset="100%" stop-color="#A34F22"/>
+                </linearGradient>
+                <linearGradient id="bowlRimGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#F6DDB8"/>
+                  <stop offset="100%" stop-color="#D98A4E"/>
+                </linearGradient>
+              </defs>
+              <path d="M26 30 C26 55 40 68 60 68 C80 68 94 55 94 30 Z" fill="url(#bowlBodyGrad)"/>
+              <ellipse cx="60" cy="30" rx="34" ry="10" fill="url(#bowlRimGrad)"/>
+              <ellipse cx="60" cy="30" rx="34" ry="10" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
             </svg>
-            <span class="flower-label">Open slowly. Close gently.</span>
+            <div class="bowl-mallet"></div>
           </div>
         </div>
       </div>
